@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def pascal(row_number)
   # Pascal's triangle is modeled as follows:
   # - The first row is `1`.

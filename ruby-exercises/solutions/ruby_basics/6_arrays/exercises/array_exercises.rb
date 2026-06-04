@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def nil_array(number)
   # return an array containing `nil` the given number of times
   Array.new(number)
@@ -20,7 +22,7 @@ end
 
 def add_element(array)
   # add an element (of any value) to the array
-  array << "ruby"
+  array << 'ruby'
 end
 
 def remove_last_element(array)

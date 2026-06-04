@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require_relative "../generators/exercise_generator"
+require_relative '../generators/exercise_generator'
 
 ExerciseGenerator.new(*ARGV).generate

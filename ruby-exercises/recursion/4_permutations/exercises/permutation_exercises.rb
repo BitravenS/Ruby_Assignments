@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def permutations(array)
   # Write a method that takes in an array of integers and returns an array of
   # all possible permutations of the original array. The permutations of a set

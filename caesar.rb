@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 def rotate(char, shift)
   if char >= 'a' && char <= 'z'
@@ -13,4 +14,4 @@ def caesar_cipher(str, shift)
   str.chars.map { |char| rotate(char, shift) }.join
 end
 
-puts caesar_cipher("Go is better than Ruby smh", 7)
+puts caesar_cipher('Go is better than Ruby smh', 7)

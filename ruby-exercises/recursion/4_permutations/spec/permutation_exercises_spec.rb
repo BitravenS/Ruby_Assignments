@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require_relative '../exercises/permutation_exercises'
 
 RSpec.describe '#permutations' do
-  it "returns 1 possible permutation for a set containing 0 numbers" do
+  it 'returns 1 possible permutation for a set containing 0 numbers' do
     expect(permutations([])).to eq [[]]
   end
 
-  xit "returns 2 possible permutations for a set containing 2 numbers" do
+  xit 'returns 2 possible permutations for a set containing 2 numbers' do
     expect(permutations([1, 2])).to match_array([[2, 1], [1, 2]])
   end
 
-  xit "returns 6 possible permutations for a set containing 3 numbers" do
+  xit 'returns 6 possible permutations for a set containing 3 numbers' do
     expected_set = [
       [1, 2, 3], [1, 3, 2], [2, 1, 3],
       [2, 3, 1], [3, 1, 2], [3, 2, 1]
@@ -19,7 +21,7 @@ RSpec.describe '#permutations' do
     expect(permutations([1, 2, 3])).to match_array(expected_set)
   end
 
-  xit "returns 24 possible permutations for a set containing 4 numbers" do
+  xit 'returns 24 possible permutations for a set containing 4 numbers' do
     expected_set = [
       [1, 2, 3, 4], [1, 2, 4, 3], [1, 3, 2, 4], [1, 3, 4, 2],
       [1, 4, 2, 3], [1, 4, 3, 2], [2, 1, 3, 4], [2, 1, 4, 3],

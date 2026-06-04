@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 def bubble_sort(list)
   loop do
     swapped = false
-    (list.length-1).times do |i|
-      if list[i] > list[i+1]
-        list[i], list[i 1] = list[i+1], list[i]
-        swapped = true
-      end
+    (list.length - 1).times do |i|
+      next unless list[i] > list[i + 1]
+
+      list[i 1] = list[i]
+      list[i] = list[i + 1]
+      swapped = true
     end
-    if not swapped
-      break
-    end
+    break unless swapped
   end
   list
 end

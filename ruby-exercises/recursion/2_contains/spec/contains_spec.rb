@@ -1,20 +1,22 @@
-require_relative "../exercises/contains_exercises"
+# frozen_string_literal: true
 
-describe "#contains?" do
+require_relative '../exercises/contains_exercises'
+
+describe '#contains?' do
   let(:nested_hash) do
     {
       data: {
-        duplicate: "e",
+        duplicate: 'e',
         stuff: {
           thing: {
-            banana: "banana",
+            banana: 'banana',
             more_stuff: {
-              something: "foo"
+              something: 'foo'
             }
           }
         },
         info: {
-          duplicate: "e",
+          duplicate: 'e',
           magic_number: 44,
           empty: nil
         }
@@ -22,27 +24,27 @@ describe "#contains?" do
     }
   end
 
-  it "returns true if the provided number is a value in the hash" do
+  it 'returns true if the provided number is a value in the hash' do
     present_number = 44
     expect(contains?(nested_hash, present_number)).to be true
   end
 
-  xit "returns true if the provided string is a value in the hash" do
-    present_string = "foo"
+  xit 'returns true if the provided string is a value in the hash' do
+    present_string = 'foo'
     expect(contains?(nested_hash, present_string)).to be true
   end
 
-  xit "returns false when the provided string is not a value in the hash" do
-    absent_string = "bar"
+  xit 'returns false when the provided string is not a value in the hash' do
+    absent_string = 'bar'
     expect(contains?(nested_hash, absent_string)).to be false
   end
 
-  xit "returns true when looking for a value that is present multiple times" do
-    duplicated_value = "e"
+  xit 'returns true when looking for a value that is present multiple times' do
+    duplicated_value = 'e'
     expect(contains?(nested_hash, duplicated_value)).to be true
   end
 
-  xit "returns true when the provided value is present and is `nil`" do
+  xit 'returns true when the provided value is present and is `nil`' do
     expect(contains?(nested_hash, nil)).to be true
   end
 end

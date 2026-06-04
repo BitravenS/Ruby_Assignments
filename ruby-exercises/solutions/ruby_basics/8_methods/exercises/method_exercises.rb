@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Since lesson #8 is on methods, you will be writing the entire method.
 # To gain more familiarity, look up the documentation for each hint.
 # Remember to unskip the corresponding tests one at a time.
@@ -9,7 +11,6 @@
 def ascii_translator(number)
   number.chr
 end
-
 
 # method name: #common_sports
 # parameters: current_sports and favorite_sports (both arrays)
@@ -27,7 +28,6 @@ def alphabetical_list(games)
   games.sort.uniq
 end
 
-
 # method name: #lucky_number
 # parameter: number (an integer) with default value of 7
 # return value: a string "Today's lucky number is <number>"
@@ -35,20 +35,16 @@ def lucky_number(number = 7)
   "Today's lucky number is #{number}"
 end
 
-
 # method name: #ascii_code
 # parameter: character (a string)
 # return value: the character's ordinal number
 # explicit return value: 'Input Error' if character's length does not equal 1
 # hint: use String#ord
 def ascii_code(character)
-  unless character.length == 1
-    return "Input Error"
-  end
+  return 'Input Error' unless character.length == 1
 
   character.ord
 end
-
 
 # method name: #pet_pun
 # parameter: animal (a string)
@@ -66,7 +62,6 @@ def pet_pun(animal)
     puts "I think #{animal}s have pet-tential!"
   end
 end
-
 
 # method name: #twenty_first_century?
 # parameter: year (an integer)

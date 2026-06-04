@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def find_language_information(languages, language_name)
   # Take languages (a nested hash) and language_name as a symbol, return the
   # value for the language_name key (which will be another hash!)
@@ -41,7 +43,7 @@ end
 def find_beautiful_languages(languages)
   # Take languages and return a hash containing only languages which have the
   # key/value pair { is_beautiful?: true } listed in their information
-  languages.select do |key, value|
+  languages.select do |_key, value|
     value[:is_beautiful?] == true
   end
 end

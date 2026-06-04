@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def total_integers(array)
   # Count the total number of integers inside of the given array
   # The array may be nested, and the integers inside these "inner" layers must also be counted

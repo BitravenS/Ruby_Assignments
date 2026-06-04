@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def permutations(array, index = 0, results = [])
   results << array.dup if index == array.length
 

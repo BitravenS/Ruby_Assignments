@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def pascal(row_number)
   current_line = [1]
   return current_line if row_number == 1

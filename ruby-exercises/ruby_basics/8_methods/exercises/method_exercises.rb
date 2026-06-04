@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Since lesson #8 is on methods, you will be writing the entire method.
 # To gain more familiarity, look up the documentation for each hint.
 # Remember to unskip the corresponding tests one at a time.
@@ -7,7 +9,7 @@
 # return value: the number's ASCII character (https://www.ascii-code.com/)
 # hint: use Integer#chr
 def ascii_translator(number)
-  return number.chr
+  number.chr
 end
 
 # method name: #common_sports
@@ -15,7 +17,7 @@ end
 # return value: an array containing items in both arrays
 # hint: use Array#intersection
 def common_sports(current_sports, favorite_sports)
-  return current_sports + favorite_sports
+  current_sports + favorite_sports
 end
 
 # method name: #alphabetical_list
@@ -23,14 +25,14 @@ end
 # return value: games, alphabetically sorted and duplicates removed
 # hint: chain Array#uniq and Array#sort together
 def alphabetical_list(games)
-  return games.uniq.sort
+  games.uniq.sort
 end
 
 # method name: #lucky_number
 # parameter: number (an integer) with default value of 7
 # return value: a string "Today's lucky number is <number>"
 def lucky_number(number = 7)
-  return "Today's lucky number is #{number}"
+  "Today's lucky number is #{number}"
 end
 
 # method name: #ascii_code
@@ -39,7 +41,7 @@ end
 # explicit return value: 'Input Error' if character's length does not equal 1
 # hint: use String#ord
 def ascii_code(character)
-  return character.ord
+  character.ord
 end
 
 # method name: #pet_pun
@@ -51,8 +53,8 @@ end
 # hint: use puts
 def pet_pun(animal)
   case animal
-  when "cat" then puts 'Cats are purr-fect!'
-  when "dog" then puts 'Dogs are paw-some!'
+  when 'cat' then puts 'Cats are purr-fect!'
+  when 'dog' then puts 'Dogs are paw-some!'
   else puts "I think #{animal}s have pet-tential!"
   end
 end
@@ -62,5 +64,5 @@ end
 # return value: true if the year is between 2001 - 2100, otherwise return false
 # hint: use Comparable#between?
 def twenty_first_century?(year)
-  return 2001 <= year && year <= 2100
+  year >= 2001 && year <= 2100
 end

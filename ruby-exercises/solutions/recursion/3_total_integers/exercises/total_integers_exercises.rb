@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def total_integers(array)
   array.sum do |element|
     case element
