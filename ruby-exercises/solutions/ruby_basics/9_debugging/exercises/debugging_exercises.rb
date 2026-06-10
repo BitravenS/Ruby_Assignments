@@ -4,7 +4,7 @@ require 'pry-byebug'
 
 # First, we're going to practice reading the Stack Trace
 # Don't look at this method prior to running the test
-# Type 'rspec' into the terminal to run Rspec
+# Type 'rspec' into the terminal to run RSpec
 # Once this test fails, have a look at the Stack Trace
 # Try to see if you can work your way from the last line, the bottom of the stack
 # To the top, the first line, where the error occurred, and ONLY THEN fix the error
