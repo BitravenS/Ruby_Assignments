@@ -10,4 +10,8 @@ class Bishop < Piece
     end
     offsets
   end
+
+  def capture_offset
+    moves_offset
+  end
 end

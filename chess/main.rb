@@ -5,7 +5,11 @@ require_relative 'lib/game'
 def main
   game = Game.new
   puts 'Game initialized'
-  game.play
+  begin
+    game.play
+  rescue Interrupt
+    puts "\nGame interrupted. Exiting..."
+  end
 end
 
 main

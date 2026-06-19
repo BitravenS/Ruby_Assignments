@@ -9,4 +9,8 @@ class King < Piece
       [1, 1], [1, -1], [-1, 1], [-1, -1]
     ]
   end
+
+  def capture_offset
+    moves_offset
+  end
 end

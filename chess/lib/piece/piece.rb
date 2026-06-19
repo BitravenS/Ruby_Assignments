@@ -15,25 +15,46 @@ class Piece
     []
   end
 
+  def capture_offset
+    []
+  end
+
   def moves_from(position)
     x, y = position
     moves_offset.map { |dx, dy| [x + dx, y + dy] }
   end
 
+  def captures_from(position)
+    x, y = position
+    capture_offset.map { |dx, dy| [x + dx, y + dy] }
+  end
+
+  def path_clear?(from, to, positions)
+    return true unless self.class::BLOCKABLE_PATH
+
+    path = self.class.path_between(from, to)
+    path.all? do |square|
+      positions.none? { |piece| piece == square }
+    end
+  end
+
   def valid_moves_from(position, all_positions = { ally: [], enemy: [] })
     positions = all_positions[:ally] + all_positions[:enemy]
-    moves_from(position).select do |target_x, target_y|
+    all_moves = moves_from(position).select do |target_x, target_y|
       next false unless target_x.between?(0, 7) && target_y.between?(0, 7)
 
-      next unless self.class::BLOCKABLE_PATH
-
-      path = self.class.path_between(position, [target_x, target_y])
-      path_clear = path.all? do |square|
-        positions.none? { |enemy| enemy == square }
+      # Destination cannot have an unit, and path must be clear
+      path_clear?(position, [target_x, target_y], positions) && positions.none? do |piece|
+        piece == [target_x, target_y]
       end
+    end
+    all_moves + captures_from(position).select do |target_x, target_y|
+      next false unless target_x.between?(0, 7) && target_y.between?(0, 7)
 
-      # Destination can have an enemy but no ally, and path must be clear
-      path_clear && all_positions[:ally].none? { |ally| ally == [target_x, target_y] }
+      # Destination must have an enemy unit, and path must be clear
+      path_clear?(position, [target_x, target_y], positions) && all_positions[:enemy].any? do |piece|
+        piece == [target_x, target_y]
+      end
     end
   end
 
@@ -62,5 +83,9 @@ class Piece
 
   def to_s
     @symbol
+  end
+
+  def is_a?(piece_class)
+    instance_of?(piece_class) || self.class.ancestors.include?(piece_class)
   end
 end

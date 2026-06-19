@@ -9,4 +9,8 @@ class Knight < Piece
       [1, 2], [1, -2], [-1, 2], [-1, -2]
     ]
   end
+
+  def capture_offset
+    moves_offset
+  end
 end
