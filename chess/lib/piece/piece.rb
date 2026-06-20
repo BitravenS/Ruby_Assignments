@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require 'colorize'
+
 class Piece
   attr_reader :color
+  attr_accessor :in_check
 
   BLOCKABLE_PATH = true
   SYMBOL = 0
@@ -9,6 +12,7 @@ class Piece
   def initialize(color)
     @color = color
     @symbol = (self.class::SYMBOL + (@color == :white ? 6 : 0)).chr(Encoding::UTF_8)
+    @in_check = false
   end
 
   def moves_offset
@@ -82,7 +86,7 @@ class Piece
   end
 
   def to_s
-    @symbol
+    @in_check ? @symbol.red : @symbol
   end
 
   def is_a?(piece_class)

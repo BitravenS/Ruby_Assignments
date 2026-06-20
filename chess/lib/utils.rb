@@ -12,3 +12,7 @@ def algebraic_to_coords(algebraic)
   row = 8 - row_number
   [row, col]
 end
+
+def clear_screen
+  system('clear') || system('cls')
+end

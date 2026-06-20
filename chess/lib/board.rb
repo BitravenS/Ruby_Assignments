@@ -2,7 +2,6 @@
 
 require_relative 'errors'
 require_relative 'utils'
-
 class Board
   attr_reader :captured_pieces
 
@@ -79,6 +78,9 @@ class Board
 
       place_piece(piece, to)
       place_piece(nil, from)
+      is_enemy_in_check = check?(color == :black ? :white : :black)
+      enemy_king = get_piece(get_king_position(color == :black ? :white : :black))
+      enemy_king.in_check = is_enemy_in_check unless enemy_king.nil?
       checkmate
     rescue MoveError => e
       raise MoveError, e.message
@@ -115,11 +117,14 @@ class Board
 
     return false unless king_position
 
+    king = get_piece(king_position)
     enemy_positions = team_positions(color)[:enemy]
-    enemy_positions.any? do |enemy_pos|
+    in_check = enemy_positions.any? do |enemy_pos|
       enemy_piece = get_piece(enemy_pos)
       valid_moves_for(enemy_piece, enemy_pos).include?(king_position)
     end
+    king.in_check = in_check
+    in_check
   end
 
   def checkmate?(color)

@@ -59,14 +59,14 @@ RSpec.describe Board do
   board5.place_piece(Rook.new(:black), [6, 6])
 
   describe '.checkmate?' do
-    it 'detects checkmate for white king at [7, 3] with a black rook at [6, 6] and [7, 0]' do
+    it 'detects checkmate for white king at [7, 3] with a black rook at [6, 6] and [7, 7]' do
       board5.place_piece(Rook.new(:black), [5, 7])
 
       puts 'Initial board setup for checkmate:'
       board5.display
       puts "Positions: #{board5.team_positions(:white)}"
 
-      board5.move_piece([5, 7], [7, 0]) # Move the rook to [7, 0] to create a checkmate scenario
+      board5.move_piece([5, 7], [7, 7]) # Move the rook to [7, 7] to create a checkmate scenario
 
       expect(board5.checkmate?(:white)).to be true
     end

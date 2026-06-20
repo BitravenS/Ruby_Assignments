@@ -4,6 +4,7 @@ require_relative 'board'
 require_relative 'errors'
 require_relative 'utils'
 require_relative 'piece/piece'
+require 'colorize'
 require 'require_all'
 require_all './lib/piece'
 
@@ -44,7 +45,8 @@ class Game
   end
 
   def play
-    puts 'Welcome to Chess by Bitraven!'
+    puts 'Welcome to Chess by Bitraven!'.blue
+    puts 'Enter moves in algebraic notation (e.g., e2 e4). Type "save" to save the game.'
     puts 'Do you want to load a saved game? (y/n)'
     load_game = gets.chomp == 'y'
     if load_game
@@ -55,13 +57,13 @@ class Game
         @board = saved_game.board
         @current_player = saved_game.current_player
       rescue StandardError => e
-        puts "Error loading game: #{e.message}"
+        puts "Error loading game: #{e.message}".red
         puts 'Starting a new game instead.'
       end
     end
-    puts "Enter  move (e.g. 'e2 e4') or 'save'\n"
 
     loop do
+      clear_screen
       puts "\n#{@current_player.capitalize}'s turn"
       puts "Captured pieces: #{@board.captured_pieces.values.flatten.map(&:to_s).join(' ')}"
       puts "\n"
@@ -72,10 +74,16 @@ class Game
         move = gets.chomp
 
         if move == 'save'
-          puts 'Enter filename to save game:'
-          filename = gets.chomp
-          save_game(filename)
-          next
+          begin
+            puts 'Enter filename to save game:'
+            filename = gets.chomp
+            save_game(filename)
+            puts "Game successfully saved to #{filename}".green
+            next
+          rescue StandardError => e
+            puts "Error saving game: #{e.message}".red
+            next
+          end
         end
 
         next unless move =~ /^[a-h][1-8] [a-h][1-8]$/
@@ -83,22 +91,22 @@ class Game
         from, to = get_move(move)
         piece = @board.get_piece(from)
         if piece.nil?
-          puts "No piece at #{coords_to_algebraic(from)}"
+          puts "No piece at #{coords_to_algebraic(from)}".red
         elsif piece.color != @current_player
-          puts "It's not your piece."
-          puts "You are playing as #{@current_player.capitalize}."
-          puts "The piece at #{coords_to_algebraic(from)} is #{piece.color.capitalize}."
+          puts "It's not your piece.".red
+          puts "You are playing as #{@current_player.capitalize}.".red
+          puts "The piece at #{coords_to_algebraic(from)} is #{piece.color.capitalize}.".red
         else
           begin
             win = @board.move_piece(from, to)
             if win
-              puts "#{@current_player.capitalize} wins!"
+              puts "#{@current_player.capitalize} wins!".green
               @board.display
               exit(0)
             end
             break
           rescue MoveError => e
-            puts e.message
+            puts e.message.red
           end
         end
       end
